@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athletic Assessment Report - Khloe & Olivia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #2c3e50;
+            padding: 40px 20px;
+        }
+
+        .report-container {
+            max-width: 850px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .report-header {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .report-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2ecc71, #f39c12);
+        }
+
+        .report-title {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .report-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .athlete-info {
+            background: #f8fafc;
+            padding: 40px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .athlete-name {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .athlete-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #475569;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .report-content {
+            padding: 50px 40px;
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, #667eea10, #764ba210);
+            border: 1px solid #667eea30;
+            padding: 30px;
+            margin-bottom: 50px;
+            border-radius: 12px;
+        }
+
+        .executive-summary h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .executive-summary p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        .assessment-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .assessment-category {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px 30px;
+            position: relative;
+        }
+
+        .category-number {
+            position: absolute;
+            top: -10px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .category-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .category-content {
+            padding: 30px;
+        }
+
+        .results-section {
+            margin-bottom: 25px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .result-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .result-card.best {
+            background: #ecfdf5;
+            border-color: #10b981;
+        }
+
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .result-card.best .result-value {
+            color: #059669;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .bounds-container {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .total-distance {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .total-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+
+        .assessment-rating {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .rating-label {
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .rating-badge {
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .excellent { background: #dcfce7; color: #166534; }
+        .good { background: #dbeafe; color: #1e40af; }
+        .average { background: #fef3c7; color: #92400e; }
+        .needs-improvement { background: #fee2e2; color: #dc2626; }
+
+        @media print {
+            body { background: white; }
+            .report-container { box-shadow: none; }
+            .assessment-grid { break-inside: avoid; }
+        }
+
+        @media (max-width: 768px) {
+            /* Container adjustments */
+            .report-container {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            /* Header adjustments */
+            .report-title { font-size: 2rem; }
+            .report-subtitle { font-size: 0.95rem; }
+            .athlete-name { font-size: 2rem; }
+            .athlete-details { flex-direction: column; gap: 15px; }
+
+            /* Content padding */
+            .report-content { padding: 30px 15px; }
+            .category-content { padding: 20px 15px; }
+            .category-header { padding: 20px 15px; }
+
+            /* Grid adjustments */
+            .results-grid { grid-template-columns: 1fr !important; gap: 10px; }
+
+            /* Key Findings Summary - single column on mobile */
+            .sisters-comparison-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+            }
+
+            /* Distance targets grid - single column on mobile */
+            .distance-targets-grid {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+
+            /* Sisters comparison grids */
+            div[style*="display: grid"][style*="grid-template-columns: repeat(auto-fit"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Responsive font sizes */
+            h3 { font-size: 1.2rem; }
+            h4 { font-size: 1.1rem; }
+            h5 { font-size: 1rem; }
+
+            /* Video containers */
+            iframe { max-width: 100%; }
+
+            /* Padding adjustments for boxes */
+            div[style*="padding: 30px"] { padding: 20px !important; }
+            div[style*="padding: 25px"] { padding: 15px !important; }
+
+            /* Category numbers */
+            .category-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                right: 20px;
+            }
+
+            /* Responsive spacing */
+            .bounds-container { padding: 15px; }
+            .total-value { font-size: 1.8rem; }
+
+            /* Footer adjustments */
+            div[style*="display: flex; flex-direction: column"] {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small mobile adjustments */
+            .report-title { font-size: 1.6rem; }
+            .athlete-name { font-size: 1.8rem; }
+            .category-title { font-size: 1.2rem; }
+
+            /* Tighter spacing */
+            .report-content { padding: 20px 10px; }
+            .category-content { padding: 15px 10px; }
+            .category-header { padding: 15px 10px; }
+
+            /* Smaller fonts */
+            body { font-size: 14px; }
+            h3 { font-size: 1.1rem; }
+            h4 { font-size: 1rem; }
+            h5 { font-size: 0.95rem; }
+
+            /* Reduced padding in boxes */
+            div[style*="padding: 30px"],
+            div[style*="padding: 25px"],
+            div[style*="padding: 20px"] {
+                padding: 12px !important;
+            }
+
+            /* Video containers */
+            iframe { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <!-- Header -->
+        <div class="report-header">
+            <!-- Logo -->
+            <div style="position: relative; width: 100%; max-width: 150px; margin: 0 auto 30px auto;">
+                <iframe loading="lazy" style="width: 100%; height: 120px; border: none; padding: 0; margin: 0; background: transparent;" src="https://www.canva.com/design/DAG2a_N00HI/MCb1a3SkyjhfsUZZtpdwhw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+            </div>
+            
+            <h1 class="report-title">Athletic Performance Assessment</h1>
+            <p class="report-subtitle">Speed & Power Evaluation Report</p>
+        </div>
+
+        <!-- Athlete Information -->
+        <div class="athlete-info">
+            <h2 class="athlete-name">Khloe & Olivia</h2>
+            <div style="text-align: center; color: #64748b; margin-bottom: 20px; font-size: 1.1rem;">Sisters Comparison Report</div>
+            <div class="athlete-details">
+                <div class="detail-item">
+                    <span class="detail-label">Assessment Date</span>
+                    <span>2/10/25</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Sport</span>
+                    <span>Soccer (Football)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-content">
+            <!-- Executive Summary -->
+            <div class="executive-summary">
+                <h2>Executive Summary</h2>
+                <p>This comprehensive assessment evaluates both Khloe and Olivia's performance across key areas of athletic development. As 12-year-old youth soccer players and sisters, their results demonstrate contrasting development profiles: Olivia shows areas requiring technical refinement and strength development, while Khloe demonstrates elite youth potential with superior speed metrics and outstanding biomechanical efficiency across all testing categories.</p>
+            </div>
+
+            <!-- Assessment Categories -->
+            <div class="assessment-grid">
+                <!-- Category 1: 10 Meter Sprint -->
+                <div class="assessment-category">
+                    <div class="category-header">
+                        <div class="category-number">1</div>
+                        <h3 class="category-title">10 Meter Sprint</h3>
+                        <p class="category-description" style="font-size: 1.1rem; font-weight: 500;">Acceleration phase assessment (0-10m)</p>
+                    </div>
+                    <div class="category-content">
+                        <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                            <h4 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Sisters Performance Comparison</h4>
+                            <div class="results-grid">
+                                <div class="result-card best">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 8px;">KHLOE</div>
+                                    <div class="result-value" style="color: #059669;">1.925s</div>
+                                    <div class="result-label">10m Time</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">18.70 km/h</div>
+                                </div>
+                                <div class="result-card" style="border-color: #f59e0b; background: #fef3c7;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">OLIVIA</div>
+                                    <div class="result-value" style="color: #d97706;">2.058s</div>
+                                    <div class="result-label">10m Time</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">17.50 km/h</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 15px; padding: 10px; background: #dcfce7; border-radius: 8px;">
+                                <span style="color: #059669; font-weight: 600;">Khloe 6.5% faster (0.133s advantage)</span>
+                            </div>
+                        </div>
+
+                        <!-- Elite Comparison -->
+                        <div style="background: #e0f2fe; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: 600;">Elite Female Senior Footballer Comparison</h5>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Khloe (12yo)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #059669;">1.925s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">18.70 km/h</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Olivia (12yo)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #f59e0b;">2.058s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">17.50 km/h</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Elite Female Footballer</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #3b82f6;">1.80s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">20.00 km/h</div>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div style="padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 5px;">Khloe Gap: +0.125s</div>
+                                    <div style="font-size: 0.85rem; color: #065f46;">6.9% slower than elite</div>
+                                </div>
+                                <div style="padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #f59e0b; margin-bottom: 5px;">Olivia Gap: +0.258s</div>
+                                    <div style="font-size: 0.85rem; color: #92400e;">14.3% slower than elite</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Khloe's Acceleration Mechanics Analysis -->
+                        <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.1rem;">Khloe's Acceleration Mechanics Analysis</h4>
+
+                            <!-- Image Grid -->
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <img src="/khloe-front-foot.png" alt="Khloe picking up front foot" style="width: 100%; border-radius: 8px; border: 2px solid #fef3c7; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #92400e; font-weight: 600;">Issue 1: Front Foot Pickup</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Picking up front foot before moving forward</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="/khloe-com-acceleration.png" alt="Khloe landing in front of COM" style="width: 100%; border-radius: 8px; border: 2px solid #fef3c7; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #92400e; font-weight: 600;">Issue 2: Landing Position</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Landing in front of COM during acceleration</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="/khloe-heel-strike.png" alt="Khloe heel striking" style="width: 100%; border-radius: 8px; border: 2px solid #fef3c7; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #92400e; font-weight: 600;">Issue 3: Heel Strike</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Heel striking in front of COM</div>
+                                </div>
+                            </div>
+
+                            <div style="text-align: center; padding: 15px; background: #dcfce7; border-radius: 8px; margin-bottom: 15px;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: #059669; margin-bottom: 5px;">Developing Technique with Strong Potential</div>
+                                <div style="font-size: 0.9rem; color: #065f46;">Despite technical issues, Khloe achieves superior performance - 6.5% faster than Olivia in 0-10m</div>
+                            </div>
+
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">First Step Weakness & Delay</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Relying on back leg push-off instead of front leg drive, causing 210ms delay from initiation. Front leg lifts off ground rather than pushing down immediately, indicating quad and hip weakness limiting explosive start capability.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Heel Strike & Excessive Ground Contact</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Landing flat-footed with significant heel contact and foot placement in front of center of mass. Ground contact time of 210ms (target: 180ms) reduces reactive force. Massive heel strike with knee breaking shows weak quads - causing compliant ankles instead of stiff tendon action.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Vertical Rising & Breaking Forces</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Hips rising too vertical on second step instead of maintaining horizontal diagonal drive. Foot landing far in front of hips delays push point by 50ms. Tight neck and hunched back restrict arm extension range. 8 strides for first 10m with excessive ground time limiting frequency.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Positive Attributes</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Good tucked pelvic position (rare for age), decent knee drive and arm extension, excellent hip extension with good posterior push. Very mobile athlete with significant potential for development.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Olivia's Acceleration Mechanics Analysis -->
+                        <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.1rem;">Olivia's Acceleration Mechanics Analysis</h4>
+
+                            <!-- Image Grid -->
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <img src="/olivia-front-foot.png" alt="Olivia picking up front foot" style="width: 100%; border-radius: 8px; border: 2px solid #fef3c7; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #92400e; font-weight: 600;">Issue 1: Front Foot Pickup</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Picking up front foot before moving forward</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="/olivia-knee-collapse.png" alt="Olivia knee collapsing" style="width: 100%; border-radius: 8px; border: 2px solid #fef3c7; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #92400e; font-weight: 600;">Issue 2: Knee Collapse</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Knee collapsing during acceleration</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="/olivia-heel-strike.png" alt="Olivia heel striking" style="width: 100%; border-radius: 8px; border: 2px solid #fef3c7; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #92400e; font-weight: 600;">Issue 3: Heel Strike & Landing</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Landing in front of COM with heel strike</div>
+                                </div>
+                            </div>
+
+                            <div style="text-align: center; padding: 15px; background: #fee2e2; border-radius: 8px; margin-bottom: 15px;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: #dc2626; margin-bottom: 5px;">Developing Acceleration Mechanics</div>
+                                <div style="font-size: 0.9rem; color: #7f1d1d;">Olivia demonstrates technical issues requiring refinement - 6.5% slower than Khloe in 0-10m</div>
+                            </div>
+
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Front Foot Pickup Before Forward Movement</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Picks up front foot before moving forward rather than pushing through the ground. This demonstrates quad weakness - the brain defaults to using reactivity and larger range of motion instead of direct powerful push. Results in delayed acceleration and reduced force production in critical first steps.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Knee Collapse During Acceleration</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Knee collapsing inward during contact phase indicates insufficient quad and glute strength to maintain proper knee alignment. This internal rotation at the hip reduces force transfer efficiency and increases injury risk. Needs targeted strength work to stabilize the knee joint during ground contact.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Landing in Front of COM with Heel Strike</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Foot landing significantly in front of center of mass with prominent heel contact creates braking forces. This overstriding pattern, combined with heel striking, slows acceleration and increases ground contact time. Needs to focus on forefoot landing under the hips for more efficient force production.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fef3c7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #d97706;">Rotation & Alignment Issues</strong>
+                                    </div>
+                                    <p style="color: #92400e; font-size: 0.95rem;">Knees pointing out too much with large rotation in legs during recovery phase. Taking him side-to-side rather than straight forward, reducing speed efficiency. Needs hips, toes, and legs more aligned straight in acceleration direction to maximize forward propulsion.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Heel Strike & Hamstring Load (Injury Risk)</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Reaching for ground instead of placing foot down, causing flatfooted heel striking with foot landing in front of center of mass (similar to Khloe). This places significant load on hamstring and creates strain over time - injury risk. Must transition to foot placement under center of mass with forefoot contact.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Development Pathway: Power & Coordination</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Primary focus: Add strength to stabilize knees on impact and develop overall power output. As she gets stronger, can activate more muscle fibers for greater push and aggression in acceleration. Need more stiffness and tension to complement her excellent mobility. Get more coordinated at speed work to bring foot/leg down quicker rather than reaching in front.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="assessment-rating">
+                            <span class="rating-label">Performance Rating</span>
+                            <span class="rating-badge needs-improvement">Needs Improvement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Breakaway Speed -->
+                <div class="assessment-category">
+                    <div class="category-header">
+                        <div class="category-number">2</div>
+                        <h3 class="category-title">Breakaway Speed</h3>
+                        <p class="category-description">10-20 meter split assessment</p>
+                    </div>
+                    <div class="category-content">
+                        <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                            <h4 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Sisters Performance Comparison</h4>
+                            <div class="results-grid">
+                                <div class="result-card best">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 8px;">KHLOE</div>
+                                    <div class="result-value" style="color: #059669;">1.479s</div>
+                                    <div class="result-label">10-20m Split</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">24.34 km/h</div>
+                                </div>
+                                <div class="result-card" style="border-color: #f59e0b; background: #fef3c7;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">OLIVIA</div>
+                                    <div class="result-value" style="color: #d97706;">1.567s</div>
+                                    <div class="result-label">10-20m Split</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">22.98 km/h</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 15px; padding: 10px; background: #dcfce7; border-radius: 8px;">
+                                <span style="color: #059669; font-weight: 600;">Khloe 5.6% faster (0.088s advantage)</span>
+                            </div>
+                        </div>
+
+                        <!-- Elite Comparison -->
+                        <div style="background: #f0f9ff; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin-top: 20px;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: 600;">Elite Female Senior Footballer Comparison</h5>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Khloe (12yo)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #059669;">1.479s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">24.34 km/h</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Olivia (12yo)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #f59e0b;">1.567s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">22.98 km/h</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Elite Female Footballer</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #3b82f6;">1.30s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">27.69 km/h</div>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                                <div style="padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 5px;">Khloe Gap: +0.179s</div>
+                                    <div style="font-size: 0.85rem; color: #065f46;">13.8% slower than elite</div>
+                                </div>
+                                <div style="padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #f59e0b; margin-bottom: 5px;">Olivia Gap: +0.267s</div>
+                                    <div style="font-size: 0.85rem; color: #92400e;">20.5% slower than elite</div>
+                                </div>
+                            </div>
+                            <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="color: #0c4a6e; font-size: 0.85rem; margin: 0;"><strong>Note:</strong> Elite female soccer players (WSL/NWSL/UEFA) typically achieve 1.30s for the 10-20m split, demonstrating explosive acceleration capability transitioning to top speed.</p>
+                            </div>
+                        </div>
+
+                        <div class="assessment-rating">
+                            <span class="rating-label">Performance Rating</span>
+                            <span class="rating-badge needs-improvement">Needs Improvement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Top End Speed -->
+                <div class="assessment-category">
+                    <div class="category-header">
+                        <div class="category-number">3</div>
+                        <h3 class="category-title">Top End Speed</h3>
+                        <p class="category-description">20-30 meter maximum velocity</p>
+                    </div>
+                    <div class="category-content">
+                        <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                            <h4 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Sisters Performance Comparison</h4>
+                            <div class="results-grid">
+                                <div class="result-card best">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 8px;">KHLOE</div>
+                                    <div class="result-value" style="color: #059669;">1.42s</div>
+                                    <div class="result-label">10m Fly</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">25.35 km/h</div>
+                                </div>
+                                <div class="result-card" style="border-color: #f59e0b; background: #fef3c7;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">OLIVIA</div>
+                                    <div class="result-value" style="color: #d97706;">1.64s</div>
+                                    <div class="result-label">10m Fly</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">21.95 km/h</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 15px; padding: 10px; background: #dcfce7; border-radius: 8px;">
+                                <span style="color: #059669; font-weight: 600;">Khloe 15% faster (0.22s advantage)</span>
+                            </div>
+                        </div>
+
+                        <!-- Stride Mechanics Comparison -->
+                        <div style="background: #f0f9ff; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: 600;">Sisters Stride Mechanics Comparison</h5>
+
+                            <!-- Khloe Metrics -->
+                            <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
+                                <h6 style="color: #065f46; margin-bottom: 15px; text-align: center;">KHLOE</h6>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                                    <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin-bottom: 5px;">3.87 Hz</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Stride Frequency</div>
+                                    </div>
+                                    <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin-bottom: 5px;">1.78m</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Stride Length</div>
+                                    </div>
+                                    <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin-bottom: 5px;">130 ms</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Ground Contact</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Olivia Metrics -->
+                            <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 20px;">
+                                <h6 style="color: #92400e; margin-bottom: 15px; text-align: center;">OLIVIA</h6>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                                    <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #f59e0b; margin-bottom: 5px;">3.73 Hz</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Stride Frequency</div>
+                                    </div>
+                                    <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #f59e0b; margin-bottom: 5px;">1.69m</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Stride Length</div>
+                                    </div>
+                                    <div style="background: white; border: 2px solid #dc2626; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #dc2626; margin-bottom: 5px;">150 ms</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Ground Contact</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="background: #e0f2fe; border-radius: 8px; padding: 15px; margin-top: 20px;">
+                                <p style="color: #0c4a6e; font-size: 0.9rem; line-height: 1.6; margin: 0;"><strong>Key Difference:</strong> Khloe's 130ms GCT vs Olivia's 150ms (13% better) demonstrates superior reactive strength and ankle stiffness. Khloe's longer stride (1.78m vs 1.69m) combined with higher frequency (3.87 Hz vs 3.73 Hz) produces significantly faster top speed.</p>
+                            </div>
+                        </div>
+
+                        <!-- Performance Analysis -->
+                        <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                            <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1rem;">Speed Development Pattern</h5>
+                            <p style="color: #078f46; line-height: 1.5; margin-bottom: 0;">Khloe's 10m fly time of 1.45s (24.83 km/h) demonstrates her excellent maximum velocity capability when already at top speed. For a 12-year-old soccer player, this shows strong speed development with continued room for technical refinement.</p>
+                        </div>
+
+                        <!-- Khloe's Top Speed Mechanics Analysis -->
+                        <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h4 style="color: #92400e; margin-bottom: 20px; font-size: 1.1rem;">Khloe's Top Speed Mechanics Analysis</h4>
+
+                            <!-- Image Grid -->
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <img src="/khloe-chin-tucked.png" alt="Khloe with chin tucked too much" style="width: 100%; border-radius: 8px; border: 2px solid #fee2e2; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #dc2626; font-weight: 600;">Issue 1: Chin Tucked Too Much</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Excessive chin tuck prevents forward vision, causing hunched posture and limiting vertical force production</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="/khloe-elbow-extension.png" alt="Khloe elbow extension" style="width: 100%; border-radius: 8px; border: 2px solid #dcfce7; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #059669; font-weight: 600;">✓ Strength: Excellent Arm Extension</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Good elbow extension and arm mechanics creating proper counterbalance - this is elite-level arm action</div>
+                                </div>
+                            </div>
+
+                            <div style="text-align: center; padding: 15px; background: #fef3c7; border-radius: 8px; margin-bottom: 15px;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 5px;">Strong Top Speed with Technical Refinement Needed</div>
+                                <div style="font-size: 0.9rem; color: #78350f;">Excellent velocity output (24.83 km/h) with room for mechanical improvements</div>
+                            </div>
+
+                            <div style="background: #fee2e2; border: 1px solid #dc2626; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1rem;">Critical Issues: Excessive Chin Tuck & Landing Position</h5>
+                                <p style="color: #7c2d12; line-height: 1.5; margin-bottom: 0;">Chin tucked so far down she cannot see forward, causing hunched forward posture that limits maximum downward power for vertical force production. Combined with foot landing in front of center of mass, this creates braking forces preventing efficient propulsion.</p>
+                            </div>
+
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Ground Contact Time & Landing Position</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">130ms ground contact time at top speed (target: 120ms youth / 90ms elite). Foot striking ~20cm ahead of hip center with flat-footed heel contact creates braking forces preventing efficient propulsion off the ground.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Excessive Chin Tuck & Hunched Posture</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Chin tucked so far down that she cannot see in front of her, causing excessive forward lean and hunched upper body. This posture prevents maximum downward power application for vertical force generation, limiting ability to create powerful ground contact.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Massive Knee Deformation</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Significant knee deformation on contact shows quad weakness. Needs increased stiffness while maintaining horizontal projection. Stride length ~1.6m showing need for power development through plyometric work and jumps.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Good Arm Extension & Mobility</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Strong arm extension and mobility - elbows coming high with good range of motion. Good knee lift showing range of motion with aggression in sprint. Knee/shin orientation properly sends her forward horizontally.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Solid Athletic Foundation</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Khloe demonstrates solid overall athleticism with good height off steps and proper horizontal projection through shin angle. Main improvements needed: foot placement closer to center of mass, quad strength development, and increased overall power output.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Olivia's Top Speed Mechanics Analysis -->
+                        <div style="background: #fee2e2; border: 1px solid #dc2626; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h4 style="color: #7f1d1d; margin-bottom: 20px; font-size: 1.1rem;">Olivia's Top Speed Mechanics Analysis</h4>
+
+                            <!-- Image Grid -->
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <img src="/olivia-heel-strike-com.png" alt="Olivia heel striking in front of COM" style="width: 100%; border-radius: 8px; border: 2px solid #fee2e2; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #dc2626; font-weight: 600;">Issue 1: Heel Strike & COM</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Heel striking in front of center of mass</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="/olivia-knee-deforming.png" alt="Olivia knee deforming at impact" style="width: 100%; border-radius: 8px; border: 2px solid #fee2e2; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #dc2626; font-weight: 600;">Issue 2: Knee Deformation</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Knee deforming at impact showing quad weakness</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="/olivia-arm-extension.png" alt="Olivia limited arm extension" style="width: 100%; border-radius: 8px; border: 2px solid #fee2e2; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #dc2626; font-weight: 600;">Issue 3: Limited Arm Extension</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Restricted arm extension limiting drive</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <img src="/olivia-braking-force.png" alt="Olivia braking force and backside mechanics" style="width: 100%; border-radius: 8px; border: 2px solid #fee2e2; margin-bottom: 8px;">
+                                    <div style="font-size: 0.85rem; color: #dc2626; font-weight: 600;">Issue 4: Braking Force</div>
+                                    <div style="font-size: 0.75rem; color: #64748b;">Heel striking too far in front creating braking force and backside mechanics, decelerating with each step</div>
+                                </div>
+                            </div>
+
+                            <div style="text-align: center; padding: 15px; background: #fee2e2; border-radius: 8px; margin-bottom: 15px;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: #dc2626; margin-bottom: 5px;">Significant Technical Issues at Top Speed</div>
+                                <div style="font-size: 0.9rem; color: #7f1d1d;">Elite: ~1.30s (27.69 km/h) | Olivia: 1.64s (21.95 km/h) - 26.2% slower than elite | Multiple mechanical inefficiencies requiring correction</div>
+                            </div>
+
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Heel Striking in Front of Center of Mass</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Significant heel striking with foot landing far in front of center of mass creates massive braking forces with each step. This landing pattern forces deceleration rather than acceleration, dramatically limiting top speed potential and efficiency.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Knee Deforming at Impact</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Severe knee deformation on contact showing significant quad weakness. Knee breaking/collapsing indicates insufficient strength to maintain stiffness through contact phase. This reduces force transfer efficiency and contributes to slower ground contact time (150ms vs Khloe's 130ms).</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Limited Arm Extension</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Restricted arm extension limiting drive and forward propulsion. Arms not achieving full range of motion needed to generate momentum and counterbalance leg action. This mechanical restriction reduces overall sprint efficiency and power output.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Braking Force Creating Backside Mechanics</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Heel striking too far in front of COM creates severe braking forces and backside mechanics on the back leg, causing active deceleration with each step rather than continuous acceleration. This compound issue - landing far in front combined with pushing off behind the body - creates a push-brake cycle that severely limits velocity development.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fef3c7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #d97706;">Developing Ground Contact Time</strong>
+                                    </div>
+                                    <p style="color: #92400e; font-size: 0.95rem;">150ms GCT at top speed - significantly slower than Khloe (130ms) and far from elite targets (~90ms). Needs reactive strength development to reduce ground contact time while increasing force production.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fef3c7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #d97706;">Too Much Vertical Rise & Air Time</strong>
+                                    </div>
+                                    <p style="color: #92400e; font-size: 0.95rem;">Going too vertical with excessive air time instead of staying forward. Needs to maintain more forward lean/projection to keep velocity horizontal rather than losing energy to vertical displacement. More forward body position will reduce air time and increase ground contact frequency.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Development Priority: Speed Coordination & Stiffness</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Focus on speed-specific coordination drills to improve foot placement and timing. Add stiffness throughout kinetic chain while maintaining her excellent mobility. Key improvements: forefoot striking under center of mass, reducing side-to-side motion, creating more forward projection. Her power base is strong - needs technical refinement.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="assessment-rating">
+                            <span class="rating-label">Performance Rating</span>
+                            <span class="rating-badge average">Average</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Bounding Coordination Assessment -->
+                <div class="assessment-category">
+                    <div class="category-header" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
+                        <div class="category-number">4</div>
+                        <h3 class="category-title">Bounding Coordination Assessment</h3>
+                        <p class="category-description">Critical limitation requiring immediate intervention</p>
+                    </div>
+                    <div class="category-content">
+                        <!-- Bounding Performance Comparison -->
+                        <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                            <h4 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Sisters Performance Comparison</h4>
+                            <div class="results-grid">
+                                <div class="result-card best">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 8px;">KHLOE</div>
+                                    <div class="result-value" style="color: #059669;">22.4m</div>
+                                    <div class="result-label">Bound Distance</div>
+                                </div>
+                                <div class="result-card" style="border-color: #f59e0b; background: #fef3c7;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">OLIVIA</div>
+                                    <div class="result-value" style="color: #d97706;">20.0m</div>
+                                    <div class="result-label">Bound Distance</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 15px; padding: 10px; background: #dcfce7; border-radius: 8px;">
+                                <span style="color: #059669; font-weight: 600;">Khloe 12% further (2.4m advantage)</span>
+                            </div>
+                        </div>
+
+                        <!-- What Proper Bounding Should Look Like -->
+                        <div style="background: #f0f9ff; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin-bottom: 20px;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: 600;">Elite Female Footballer Bounding Standards</h5>
+                            <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
+                                <h6 style="color: #0c4a6e; margin-bottom: 12px;">Coordination Criteria (Must Master Before Distance):</h6>
+                                <ul style="color: #64748b; line-height: 1.7; margin-left: 20px; font-size: 0.95rem;">
+                                    <li style="margin-bottom: 6px;">Consistent rhythm maintained for 10+ consecutive bounds</li>
+                                    <li style="margin-bottom: 6px;">Single-leg landing stability with minimal wobble</li>
+                                    <li style="margin-bottom: 6px;">Straight-line tracking (less than 1m lateral deviation over 10 bounds)</li>
+                                    <li style="margin-bottom: 6px;">Smooth alternating leg transitions without pauses</li>
+                                    <li style="margin-bottom: 6px;">Controlled landing mechanics (no knee valgus, proper foot position)</li>
+                                </ul>
+                            </div>
+                            <div style="background: white; border-radius: 8px; padding: 20px;">
+                                <h6 style="color: #0c4a6e; margin-bottom: 12px;">Distance Targets (After Coordination Established):</h6>
+                                <div class="distance-targets-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: center;">
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 5px;">Youth Baseline</div>
+                                        <div style="font-size: 1.3rem; font-weight: 700; color: #f59e0b;">22-25m</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 5px;">Elite Youth (12-13yo)</div>
+                                        <div style="font-size: 1.3rem; font-weight: 700; color: #3b82f6;">24-28m</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 5px;">Elite Adult</div>
+                                        <div style="font-size: 1.3rem; font-weight: 700; color: #059669;">29-32m</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="assessment-rating">
+                            <span class="rating-label">Coordination Status</span>
+                            <span class="rating-badge needs-improvement">Critical - Requires Immediate Intervention</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Speed Summary -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px; margin-top: 30px;">
+            <h2 style="color: #2c3e50; text-align: center; margin-bottom: 30px; font-size: 1.8rem;">Sisters Speed Performance Summary</h2>
+
+            <!-- Khloe Summary -->
+            <div style="background: #dcfce7; border: 2px solid #10b981; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+                <h3 style="color: #065f46; text-align: center; margin-bottom: 20px; font-size: 1.3rem;">KHLOE</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #10b981; margin-bottom: 8px;">17.80 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">0-10m Average</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #10b981; margin-bottom: 8px;">24.16 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">10-20m Split</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #10b981; margin-bottom: 8px;">25.35 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">10m Fly (Peak)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Olivia Summary -->
+            <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+                <h3 style="color: #92400e; text-align: center; margin-bottom: 20px; font-size: 1.3rem;">OLIVIA</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #d97706; margin-bottom: 8px;">17.14 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">0-10m Average</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #d97706; margin-bottom: 8px;">21.69 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">10-20m Split</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #d97706; margin-bottom: 8px;">21.95 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">10m Fly (Peak)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direct Comparison -->
+            <div style="background: white; border: 2px solid #0284c7; border-radius: 12px; padding: 25px;">
+                <h3 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Performance Advantages</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">+4%</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Acceleration</div>
+                        <div style="font-size: 0.75rem; color: #10b981; margin-top: 5px;">0.08s faster</div>
+                    </div>
+                    <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">+11%</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Breakaway</div>
+                        <div style="font-size: 0.75rem; color: #10b981; margin-top: 5px;">0.17s faster</div>
+                    </div>
+                    <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">+15%</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Top Speed</div>
+                        <div style="font-size: 0.75rem; color: #10b981; margin-top: 5px;">0.22s faster</div>
+                    </div>
+                    <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">-15%</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Ground Contact</div>
+                        <div style="font-size: 0.75rem; color: #10b981; margin-top: 5px;">20ms better</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: #0c4a6e;">
+                    <strong>Khloe demonstrates superior performance across speed metrics, while Olivia shows better endurance capacity</strong>
+                </div>
+            </div>
+
+            <!-- Repeated Sprint Ability & Endurance Test -->
+            <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 30px; margin-top: 20px;">
+                <h3 style="color: #2c3e50; text-align: center; margin-bottom: 25px; font-size: 1.4rem;">Repeated Sprint Ability Test</h3>
+                <p style="text-align: center; color: #64748b; margin-bottom: 25px; font-size: 0.95rem;">Multiple maximal sprints measuring speed endurance and recovery capacity</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div style="background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px; padding: 20px; text-align: center;">
+                        <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 8px;">OLIVIA</div>
+                        <div style="font-size: 2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">5 Sprints</div>
+                        <div style="font-size: 0.85rem; color: #10b981; font-weight: 600; margin-bottom: 10px;">All Above 90% Max Speed</div>
+                        <div style="font-size: 0.8rem; color: #064e3b; line-height: 1.4;">Superior endurance and recovery capacity - maintained high velocity output across all attempts</div>
+                    </div>
+
+                    <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 20px; text-align: center;">
+                        <div style="font-size: 0.9rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">KHLOE</div>
+                        <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; margin-bottom: 5px;">2 Sprints</div>
+                        <div style="font-size: 0.85rem; color: #d97706; font-weight: 600; margin-bottom: 10px;">Dropped Off After 2 Runs</div>
+                        <div style="font-size: 0.8rem; color: #78350f; line-height: 1.4;">Significant velocity decay - developing endurance capacity requiring aerobic base development</div>
+                    </div>
+                </div>
+
+                <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 8px; padding: 15px; text-align: center;">
+                    <div style="font-size: 0.95rem; color: #0c4a6e; font-weight: 600; margin-bottom: 5px;">Key Finding for Female Soccer Players</div>
+                    <div style="font-size: 0.85rem; color: #075985; line-height: 1.5;">Olivia's superior repeated sprint ability is crucial for soccer - elite female footballers require ability to perform multiple high-intensity sprints throughout 90 minutes. This endurance advantage compensates for technical deficiencies and indicates strong aerobic conditioning base.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion & Action Plan -->
+        <div style="background: #f8fafc; border-top: 3px solid #667eea; padding: 40px; margin-top: 30px;">
+            <h2 style="color: #2c3e50; text-align: center; margin-bottom: 30px; font-size: 1.8rem;">Sisters Conclusion & Development Pathways</h2>
+            <div style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #475569;">
+
+                <!-- Sisters vs Elite Comparison -->
+                <div style="background: #e0f2fe; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+                    <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.2rem; text-align: center; font-weight: 600;">Sisters vs Football Youth & Elite Standards</h5>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div style="background: white; border-radius: 8px; padding: 15px;">
+                            <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 10px;">Peak Speed Comparison (10m Fly)</div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="color: #10b981;">Khloe: 24.83 km/h (1.45s)</span>
+                                <span style="color: #94a3b8;">(-4-11%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="color: #f59e0b;">Olivia: 22.78 km/h (1.58s)</span>
+                                <span style="color: #94a3b8;">(-12-19%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="color: #3b82f6;">Elite Female Footballer: ~26-28 km/h</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: #64748b; margin-top: 5px; font-style: italic;">Elite WSL/NWSL/UEFA standards for female footballers</div>
+                            <div style="background: #dcfce7; padding: 8px; border-radius: 4px; margin-top: 8px;">
+                                <div style="font-size: 0.75rem; color: #065f46; font-weight: 600;">Khloe closer to elite standard in peak speed</div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px;">
+                            <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 10px;">Acceleration (0-10m)</div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #10b981;">Khloe: 1.925s</span>
+                                <span style="color: #94a3b8;">(-5%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #f59e0b;">Olivia: 2.058s</span>
+                                <span style="color: #94a3b8;">(-12%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #3b82f6;">Elite Female Footballer: ~1.84s</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: #065f46; margin-top: 8px;">Khloe significantly closer to elite standard</div>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px;">
+                            <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 10px;">Technical Efficiency</div>
+                            <div style="margin-bottom: 8px;">
+                                <span style="color: #10b981; font-weight: 600;">Khloe:</span>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">GCT: 130ms ⭐</div>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Stride: 1.78m ⭐</div>
+                            </div>
+                            <div>
+                                <span style="color: #f59e0b; font-weight: 600;">Olivia:</span>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">GCT: 150ms</div>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Stride: 1.69m</div>
+                            </div>
+                            <div style="font-size: 0.75rem; color: #065f46; margin-top: 8px; font-style: italic;">Khloe shows elite youth mechanics</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #dcfce7; border-left: 4px solid #10b981; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+                    <h4 style="color: #059669; margin-bottom: 10px; font-size: 1.1rem;">Khloe's Profile</h4>
+                    <p style="margin-bottom: 0;">Peak velocity of 25.35 km/h (8.4% below elite female footballer) with excellent acceleration capabilities. 10m sprint: 1.925s, 10-20m split: 1.479s, Bound: 22.4m. Shows strong technical foundations with superior reactive strength and biomechanical efficiency compared to Olivia. Demonstrates elite youth potential for her age with continued room for development toward senior elite standards.</p>
+                </div>
+
+                <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+                    <h4 style="color: #92400e; margin-bottom: 10px; font-size: 1.1rem;">Olivia's Profile</h4>
+                    <p style="margin-bottom: 0;">Peak velocity of 21.95 km/h (20.7% below elite female footballer) with developing speed capabilities. 10m sprint: 2.058s, 10-20m split: 1.567s, Bound: 20.0m. Shows areas requiring technical refinement and strength development across all metrics. Has significant room for improvement in acceleration mechanics, ground contact time, and force production efficiency.</p>
+                </div>
+
+                <p style="margin-bottom: 20px;"><strong>Sisters Analysis:</strong> Despite being the same age, Khloe shows 5-12% better performance across all speed metrics. The key differences lie in Khloe's superior acceleration mechanics, faster ground contact time, and more efficient force production. These technical advantages compound to produce significantly faster times across all distance splits, with Khloe demonstrating elite youth potential while Olivia shows developing speed requiring technical refinement.</p>
+                
+                <div style="background: rgba(102, 126, 234, 0.1); border-radius: 12px; border-left: 4px solid #667eea; padding: 30px; margin-top: 20px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 25px; font-size: 1.4rem; text-align: center;">Priority Actions for Sisters' Athletic Development</h3>
+
+                    <!-- Summary of Key Issues -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 25px; border: 2px solid #0284c7;">
+                        <h4 style="color: #0c4a6e; margin-bottom: 15px; font-size: 1.1rem;">Key Findings Summary</h4>
+                        <div class="sisters-comparison-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <h5 style="color: #10b981; margin-bottom: 10px;">Khloe (Elite Youth Potential)</h5>
+                                <ul style="color: #64748b; font-size: 0.9rem; line-height: 1.6; margin-left: 20px;">
+                                    <li>10m: 1.925s (excellent acceleration) ⭐</li>
+                                    <li>10-20m: 1.479s (strong speed development) ⭐</li>
+                                    <li>Flying 10m: 1.45s / 24.83 km/h ⭐</li>
+                                    <li>Bound: 22.4m (superior power output)</li>
+                                    <li>Only 8.4% below elite female footballer standards</li>
+                                    <li>Strong technical foundations for age</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: #f59e0b; margin-bottom: 10px;">Olivia (Developing)</h5>
+                                <ul style="color: #64748b; font-size: 0.9rem; line-height: 1.6; margin-left: 20px;">
+                                    <li>10m: 2.058s (needs improvement)</li>
+                                    <li>10-20m: 1.567s (developing speed)</li>
+                                    <li>Flying 10m: 1.58s / 22.78 km/h</li>
+                                    <li>Bound: 20.0m (requires strength development)</li>
+                                    <li>20.7% below elite female footballer standards</li>
+                                    <li>Significant room for technical refinement</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p style="color: #0c4a6e; margin-top: 15px; font-weight: 600; font-size: 0.95rem; text-align: center;">
+                            Key Difference: Khloe demonstrates 12% better bounding distance and consistently stronger performance across all metrics
+                        </p>
+                    </div>
+
+                    <p style="margin-bottom: 25px; font-size: 1.05rem; font-weight: 600; color: #2c3e50;">Youth-appropriate development plan addressing bounding coordination deficit, sprint mechanics flaws, and power limitations through systematic phased approach:</p>
+
+                    <!-- Phase 0: IMMEDIATE PRIORITY -->
+                    <div style="background: #fef2f2; border-radius: 10px; padding: 20px; margin-bottom: 20px; border: 3px solid #dc2626;">
+                        <h4 style="color: #dc2626; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center;">
+                            <span style="background: #dc2626; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">⚠️</span>
+                            IMMEDIATE PRIORITY: Bounding Coordination Foundation (4-8 weeks)
+                        </h4>
+                        <p style="color: #7f1d1d; margin-bottom: 15px; line-height: 1.6; font-weight: 600;"><strong>Critical:</strong> Both sisters must establish basic bounding coordination before progressing to power development. This is not optional - it's the prerequisite for all subsequent phases.</p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                            <h5 style="color: #991b1b; margin-bottom: 10px;">Why This Phase Cannot Be Skipped:</h5>
+                            <ul style="color: #7f1d1d; line-height: 1.7; margin-left: 20px;">
+                                <li style="margin-bottom: 6px;">Bounding struggles reveal inability to coordinate single-leg force production</li>
+                                <li style="margin-bottom: 6px;">Cannot develop power through plyometrics without coordination to execute the movements</li>
+                                <li style="margin-bottom: 6px;">Attempting advanced plyometrics with poor bounding = high injury risk + zero adaptation</li>
+                                <li>Same coordination deficits limit sprint mechanics optimization</li>
+                            </ul>
+                        </div>
+
+                        <h5 style="color: #dc2626; margin-bottom: 10px; margin-top: 15px;">Phase 0 Training Focus:</h5>
+                        <ul style="color: #7f1d1d; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Basic bounding patterns:</strong> Short 3-5 bound sequences focusing on rhythm and timing (not distance)</li>
+                            <li style="margin-bottom: 8px;"><strong>Single-leg stance work:</strong> Static holds → controlled descent → single-leg mini-hops</li>
+                            <li style="margin-bottom: 8px;"><strong>Ankle preparation:</strong> Pogo progression (bilateral pogos → split stance → single-leg pogos)</li>
+                            <li style="margin-bottom: 8px;"><strong>Hip/knee stabilization:</strong> Single-leg balance with perturbations, controlled landing drills</li>
+                            <li style="margin-bottom: 8px;"><strong>Coordination emphasis:</strong> Slow alternating bounds with 3-second stance phase between bounds</li>
+                            <li style="margin-bottom: 8px;"><strong>Video feedback:</strong> Every session - show them what proper vs improper looks like</li>
+                            <li><strong>Success criteria:</strong> Consistent 8-10 bounds maintaining rhythm and balance before progressing</li>
+                        </ul>
+
+                        <div style="background: #fee2e2; border-left: 4px solid #dc2626; padding: 12px; margin-top: 15px; border-radius: 4px;">
+                            <p style="color: #991b1b; margin: 0; font-size: 0.95rem;"><strong>Progress Check:</strong> Only advance to Phase 1 when both can execute 10 consecutive bounds with consistent rhythm, stable landings, and minimal side-to-side deviation. Do not rush this phase.</p>
+                        </div>
+                    </div>
+
+                    <!-- Phase 1 -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #3498db;">
+                        <h4 style="color: #3498db; margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center;">
+                            <span style="background: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">1</span>
+                            Sprint Mechanics Correction & Movement Patterns (8-12 weeks)
+                        </h4>
+                        <p style="color: #475569; margin-bottom: 12px; line-height: 1.6;"><strong>Focus:</strong> Fix heel striking, landing position, and establish proper foot contact patterns</p>
+
+                        <div style="background: #f8fafc; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                            <p style="color: #64748b; margin: 0; font-size: 0.9rem;"><strong>Khloe Priority:</strong> First step mechanics, reduce 210ms delay, heel-to-forefoot transition | <strong>Olivia Priority:</strong> Reduce side-to-side movement, improve alignment, maintain power advantage</p>
+                        </div>
+
+                        <ul style="color: #64748b; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Heel-to-forefoot transition drills:</strong> Wall drills, partner marching, slow-motion sprint cycles (Khloe: 210ms → 180ms GCT target)</li>
+                            <li style="margin-bottom: 8px;"><strong>Landing position correction:</strong> Foot placement under center of mass drills, high knee walks with dorsiflexion, wicket runs</li>
+                            <li style="margin-bottom: 8px;"><strong>Alignment work:</strong> Hip/toe pointing straight drills, line running, mirror feedback (Olivia: reduce rotation issues)</li>
+                            <li style="margin-bottom: 8px;"><strong>Posture correction:</strong> Chin tuck drills, forward lean progressions, core bracing during acceleration</li>
+                            <li style="margin-bottom: 8px;"><strong>First step mechanics:</strong> Front leg drive emphasis, reactive starts from various positions (Khloe critical)</li>
+                            <li style="margin-bottom: 8px;"><strong>Acceleration pattern work:</strong> 10-15 acceleration reps per session (10-20m), emphasizing horizontal drive and forefoot contact</li>
+                            <li style="margin-bottom: 8px;"><strong>Continued bounding:</strong> Maintain 2x/week bounding work, now focusing on increasing distance (target: 22-25m)</li>
+                            <li><strong>Video analysis:</strong> Weekly sessions comparing their mechanics to targets, immediate feedback loops</li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #2ecc71;">
+                        <h4 style="color: #2ecc71; margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center;">
+                            <span style="background: #2ecc71; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">2</span>
+                            Reactive Strength & Ground Contact Optimization (8-12 weeks)
+                        </h4>
+                        <p style="color: #475569; margin-bottom: 12px; line-height: 1.6;"><strong>Focus:</strong> Reduce GCT and increase reactive strength through coordinated plyometric progressions</p>
+
+                        <div style="background: #f0fdf4; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                            <p style="color: #064e3b; margin: 0; font-size: 0.9rem;"><strong>Khloe Target:</strong> 130ms → 110-115ms top speed GCT (elite youth approaching) | <strong>Olivia Target:</strong> 150ms → 120-130ms top speed GCT (foundational improvement needed)</p>
+                        </div>
+
+                        <ul style="color: #64748b; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Ankle stiffness progression:</strong> Pogo jumps (bilateral → single-leg), quick ground contacts, repeated hops on force plate</li>
+                            <li style="margin-bottom: 8px;"><strong>Fast ground contact drills:</strong> Rapid-fire mini hurdles, quick feet ladders, speed bounce variations</li>
+                            <li style="margin-bottom: 8px;"><strong>Bounding for distance:</strong> Now targeting performance - Khloe 25m+ (closer to elite), Olivia 22m+ (foundational development) (elite youth: 24-28m)</li>
+                            <li style="margin-bottom: 8px;"><strong>Sprint-specific coordination:</strong> Wicket drills at varying spacings, resisted/assisted sprints, overspeed work</li>
+                            <li style="margin-bottom: 8px;"><strong>Stride optimization:</strong> Target 1.7-1.85m stride length consistency, frequency drills to increase Hz</li>
+                            <li style="margin-bottom: 8px;"><strong>Top speed mechanics:</strong> Flying 10m/20m sprints with timing gates, maximum velocity holds</li>
+                            <li><strong>CNS development:</strong> High-quality, low-volume explosive work (never fatigued reps)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #f39c12;">
+                        <h4 style="color: #f39c12; margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center;">
+                            <span style="background: #f39c12; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">3</span>
+                            Progressive Power Development (Ongoing - 12+ weeks)
+                        </h4>
+                        <p style="color: #475569; margin-bottom: 12px; line-height: 1.6;"><strong>Focus:</strong> Build explosive power through progressive plyometric program (only after bounding coordination established)</p>
+
+                        <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                            <p style="color: #78350f; margin: 0; font-size: 0.9rem;"><strong>Prerequisite:</strong> Cannot enter this phase without demonstrating competent bounding mechanics and GCT improvements from Phase 1-2</p>
+                        </div>
+
+                        <ul style="color: #64748b; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Bound variations:</strong> Single-leg bounds, alternate leg bounds, continuous bounds, uphill bounds</li>
+                            <li style="margin-bottom: 8px;"><strong>Sport-specific power:</strong> Lateral bounds (soccer directional changes), rotational medicine ball work</li>
+                            <li style="margin-bottom: 8px;"><strong>Landing mechanics emphasis:</strong> Every rep - proper foot position, no knee valgus, quick transitions</li>
+                            <li style="margin-bottom: 8px;"><strong>Volume management:</strong> Youth-appropriate contacts per session (40-60 for beginners, 80-100 advanced)</li>
+                            <li><strong>Integration:</strong> Power work + sprint work same session (power first when fresh)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #9b59b6;">
+                        <h4 style="color: #9b59b6; margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center;">
+                            <span style="background: #9b59b6; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">4</span>
+                            Strength Development (Parallel with all phases - ongoing)
+                        </h4>
+                        <p style="color: #475569; margin-bottom: 12px; line-height: 1.6;"><strong>Focus:</strong> Quad strengthening, knee stability, hip/core control - runs concurrent with all phases at appropriate intensity</p>
+
+                        <div style="background: #faf5ff; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                            <p style="color: #581c87; margin: 0; font-size: 0.9rem;"><strong>Both Sisters:</strong> Quad weakness (knee breaking) is primary strength limitation. Core/hip work secondary. Youth-appropriate loads only.</p>
+                        </div>
+
+                        <ul style="color: #64748b; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Quad dominant work:</strong> Goblet squats, split squats, step-ups, knee extension variations (address knee breaking)</li>
+                            <li style="margin-bottom: 8px;"><strong>Single-leg strength:</strong> Bulgarian split squats, single-leg RDLs, pistol progressions (correct rotation patterns)</li>
+                            <li style="margin-bottom: 8px;"><strong>Posterior chain:</strong> Hip thrusts, Nordic curls (progression), glute bridges, deadlift variations</li>
+                            <li style="margin-bottom: 8px;"><strong>Core complex:</strong> Anti-rotation work, lower ab emphasis, posterior pelvic tilt training</li>
+                            <li style="margin-bottom: 8px;"><strong>Ankle/calf strengthening:</strong> Calf raises (multiple positions), ankle dorsiflexion work, tibialis raises</li>
+                            <li style="margin-bottom: 8px;"><strong>Isometric holds:</strong> Wall sits, single-leg holds, joint angle-specific positions for stability</li>
+                            <li style="margin-bottom: 8px;"><strong>Rate of force development:</strong> Trap bar jumps, medicine ball throws (when technical foundation solid)</li>
+                            <li><strong>Progression model:</strong> Bodyweight mastery → External load → Explosive variations (12-18 month timeline)</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fee2e2; border: 2px solid #dc2626; border-radius: 8px; padding: 20px; margin-top: 20px;">
+                        <p style="color: #7f1d1d; font-weight: 600; margin-bottom: 12px; font-size: 1.05rem;">⚠️ Critical Youth Development Principles:</p>
+                        <ul style="color: #7f1d1d; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Bounding coordination is non-negotiable:</strong> Do not skip Phase 0. Both sisters must establish this foundation.</li>
+                            <li style="margin-bottom: 8px;"><strong>Different progression rates:</strong> Khloe shows superior speed metrics and may progress through speed phases faster, while Olivia demonstrates better endurance capacity - both must complete each phase at their own pace</li>
+                            <li style="margin-bottom: 8px;"><strong>Injury risk factors:</strong> Heel striking + hamstring loading + quad weakness = high hamstring/knee injury risk. Address immediately.</li>
+                            <li style="margin-bottom: 8px;"><strong>Technique before intensity:</strong> Perfect movement quality at 70% effort before progressing to 100%</li>
+                            <li style="margin-bottom: 8px;"><strong>Youth-appropriate volume:</strong> 12-year-olds need more recovery, less volume than adults. Quality over quantity.</li>
+                            <li style="margin-bottom: 8px;"><strong>Concurrent development:</strong> Strength work (Phase 4) runs parallel to all other phases at appropriate intensity</li>
+                            <li><strong>Timeline expectation:</strong> 6-12 months to see significant improvements. This is long-term athletic development, not a quick fix.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer with Logo and Contact Info -->
+        <div style="background: #2c3e50; color: white; padding: 50px 40px; text-align: center;">
+            <!-- Logo -->
+            <div style="position: relative; width: 100%; max-width: 150px; margin: 0 auto 30px auto;">
+                <iframe loading="lazy" style="width: 100%; height: 120px; border: none; padding: 0; margin: 0; background: transparent;" src="https://www.canva.com/design/DAG2a_N00HI/MCb1a3SkyjhfsUZZtpdwhw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <div style="margin-bottom: 15px;">
+                    <a href="https://www.ambitionsportsperformance.com" target="_blank" style="color: white; font-size: 1.2rem; font-weight: 700; text-decoration: none; border-bottom: 2px solid #3498db; padding-bottom: 2px;">www.ambitionsportsperformance.com</a>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; margin-top: 20px;">
+                    <a href="https://www.instagram.com/ambitionsportsperformance" target="_blank" style="color: white; text-decoration: none; font-size: 1rem; font-weight: 700; transition: color 0.3s;">
+                        Instagram: @ambitionsportsperformance
+                    </a>
+                    
+                    <a href="https://youtube.com/@ambitionfootball?si=0UXG4OsP51yW2SaC" target="_blank" style="color: white; text-decoration: none; font-size: 1rem; font-weight: 700; transition: color 0.3s;">
+                        YouTube: Ambition Football
+                    </a>
+                    
+                    <a href="https://subscribepage.io/YF641F" target="_blank" style="color: white; text-decoration: none; font-size: 1rem; font-weight: 700; transition: color 0.3s;">
+                        Success Stories: subscribepage.io/YF641F
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
